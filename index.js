@@ -16,23 +16,38 @@ app.get('/', function (req, res) {
 // 
 app.post('/1765703667:AAE1rxOjZfXEdba1O29k_IuNcTK41vkqDsc', function (req, res) {
   const message = req.body.message;
-  console.log('----' + message.text,message.chat.first_name);
-  post('sendMessage',
-    {
+  console.log('----' + message.text, message.chat.first_name);
+  const replayKeyboard = {
+    keyboard: [
+      [
+        { text: 'Say yes' },
+        { text: 'Say no' }
+      ],
+      [
+        { text: 'or say cancel' },
+      ],
+      [
+        { text: 'Get File' },
+      ],
+    ]
+  }
+  if (message.text === 'Get File') {
+    post('sendDocument', {
       chat_id: message.chat.id,
-      text: 'Bot is Live :) your message: ' + message.text + '--your name is: ' + message.chat.first_name + '-- chat id:' + message.chat.id,
-      reply_markup:{
-        keyboard:[
-          [
-            {text:'Say yes'},
-            {text:'Say no'}
-          ],
-          [
-            {text:'or say cancel'},
-          ],
-        ]
-      }
-    });
+      document: 'https://microdata.worldbank.org/index.php/catalog/2747/download/39212',
+      caption: 'this is a test file',
+      reply_to_message_id: message.id,
+      allow_sending_without_reply: true,
+      reply_markup: replayKeyboard
+    })
+  } else {
+    post('sendMessage',
+      {
+        chat_id: message.chat.id,
+        text: 'Bot is Live :) your message: "' + message.text + '" --your name is: ' + message.chat.first_name + '-- chat id:' + message.chat.id,
+        reply_markup: replayKeyboard
+      });
+  }
 
   res.end("yes");
 })
