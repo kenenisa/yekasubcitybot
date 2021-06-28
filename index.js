@@ -34,7 +34,7 @@ app.post('/1765703667:AAE1rxOjZfXEdba1O29k_IuNcTK41vkqDsc', function (req, res) 
   if (message.text === 'Get File') {
     post('sendDocument', {
       chat_id: message.chat.id,
-      document: 'https://microdata.worldbank.org/index.php/catalog/2747/download/39212',
+      document: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       caption: 'this is a test file',
       reply_to_message_id: message.id,
       allow_sending_without_reply: true,
