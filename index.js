@@ -23,8 +23,13 @@ app.post('/1765703667:AAE1rxOjZfXEdba1O29k_IuNcTK41vkqDsc', function (req, res) 
       text: 'Bot is Live :) your message: ' + message.text + '--your name is: ' + message.chat.first_name + '-- chat id:' + message.chat.id,
       reply_markup:{
         keyboard:[
-          {text:'Say yes'},
-          {text:'Say no'}
+          [
+            {text:'Say yes'},
+            {text:'Say no'}
+          ],
+          [
+            {text:'or say cancel'},
+          ],
         ]
       }
     });
